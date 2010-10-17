@@ -11,6 +11,11 @@ function it(name, callable)
 end
 
 
+function before(callable)
+    callable()
+end
+
+
 describe('Number', function()
     it('is addable', function()
         assert(1 + 1 == 2)
@@ -63,4 +68,41 @@ describe('pcall, the exception catcher', function()
         assert(err ~= 15)
     end)
 end)
+
+
+describe('A class', function()
+    before(function()
+        Dog = {
+            new = function(self)
+                dog = {}
+                setmetatable(dog, self)
+                self.__index = self
+                return dog
+            end,
+            bark = function(self)
+                return 'arf!'
+            end
+        }
+    end)
+
+    it('has class methods', function()
+        assert(Dog.bark() == 'arf!')
+    end)
+
+    it('has instance methods', function()
+        assert(Dog:new():bark() == 'arf!')
+    end)
+
+    it('has instances that equal themselves', function()
+        dog = Dog:new()
+        assert(dog == dog)
+    end)
+
+    it('has independent instance objects', function()
+        assert(Dog:new() ~= Dog:new())
+    end)
+end)
+
+
+-- missing arguments default to nil?
 
