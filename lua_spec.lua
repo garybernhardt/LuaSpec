@@ -40,6 +40,13 @@ describe('Function', function()
         local f = function() return 5 end
         assert(f() == 5)
     end)
+
+    it('sadly defaults arguments to nil', function()
+        function f(an_arg)
+            return an_arg
+        end
+        assert(f() == nil)
+    end)
 end)
 
 
@@ -102,7 +109,4 @@ describe('A class', function()
         assert(Dog:new() ~= Dog:new())
     end)
 end)
-
-
--- missing arguments default to nil?
 
