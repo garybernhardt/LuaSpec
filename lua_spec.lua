@@ -1,5 +1,4 @@
 function describe(name, callable)
-    print()
     print(name)
     callable()
 end
