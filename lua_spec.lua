@@ -10,8 +10,19 @@ function it(name, callable)
 end
 
 
+function xit(name, callable)
+    print("  (PENDING) "..name)
+end
+
+
 function before(callable)
     callable()
+end
+
+
+function assert_raises(callable)
+    ok, error = pcall(callable)
+    assert(ok == false)
 end
 
 
@@ -108,4 +119,41 @@ describe('A class', function()
         assert(Dog:new() ~= Dog:new())
     end)
 end)
+
+
+describe('A table', function()
+    it('allows element access with brackets or dot', function()
+        table = {a=1, b=2}
+        assert(table['a'] == 1 and table.a == 1)
+    end)
+
+    it('is writeable', function()
+        table = {}
+        table['a'] = 1
+        table.b = 2
+        assert(table.a == 1 and table.b == 2)
+    end)
+
+    it('does not allow nil keys', function()
+        table = {}
+        assert_raises(function() table[nil] = 1 end)
+    end)
+
+    it('allows nil values', function()
+        table = {a=nil}
+        assert(table.a == nil)
+    end)
+
+    it('sadly returns nil by default', function()
+        table = {}
+        assert(table.a == nil)
+    end)
+end)
+
+
+--[[
+    Bug in manual section 2.2: 
+    "Like indices, the value of a table field can be of any type (except nil)"
+    Values can be nil!
+    ]]
 
