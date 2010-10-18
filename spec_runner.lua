@@ -26,7 +26,7 @@ end
 
 
 function assert_raises(callable)
-    ok, error = pcall(callable)
+    ok, err = pcall(callable)
     assert(ok == false)
 end
 
