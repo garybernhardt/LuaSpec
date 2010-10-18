@@ -58,6 +58,17 @@ describe('Number', function()
 end)
 
 
+describe('String', function()
+    it('sadly uses the .. operator for concatenation', function()
+        assert('a'..'b' == 'ab')
+    end)
+
+    it('sadly uses the # operator for length', function()
+        assert(#'abc' == 3)
+    end)
+end)
+
+
 describe('Function', function()
     it('is defineable inline', function()
         local f = function() return 5 end
