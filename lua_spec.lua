@@ -329,7 +329,7 @@ end)
 
 
 --[[
-    Bug in manual section 2.2: 
+    Bug in manual section 2.2:
     "Like indices, the value of a table field can be of any type (except nil)"
     Values can be nil!
     ]]
