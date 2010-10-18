@@ -418,7 +418,12 @@ end)
 
 
 describe('Return', function()
-    xit('sadly must be the last statement in a block')
+    it('sadly must be the last statement in a block', function()
+        return_at_end_ok, error = loadstring('while true do return; end')
+        return_in_middle_ok, error = loadstring('while true do return; x = 1; end')
+        assert(return_at_end_ok)
+        assert(not return_in_middle_ok)
+    end)
 end)
 
 
