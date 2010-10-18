@@ -1,15 +1,3 @@
-describe('Return', function()
-    it('sadly must be the last statement in a block', function()
-        local return_at_end_ok, error = loadstring(
-            'while true do return; end')
-        local return_in_middle_ok, error = loadstring(
-            'while true do return; x = 1; end')
-        assert(return_at_end_ok)
-        assert(not return_in_middle_ok)
-    end)
-end)
-
-
 describe('Function', function()
     it('is defineable inline', function()
         local f = function() return 5 end
@@ -46,4 +34,15 @@ describe('Function', function()
     end)
 end)
 
+
+describe('Return', function()
+    it('sadly must be the last statement in a block', function()
+        local return_at_end_ok, error = loadstring(
+            'while true do return; end')
+        local return_in_middle_ok, error = loadstring(
+            'while true do return; x = 1; end')
+        assert(return_at_end_ok)
+        assert(not return_in_middle_ok)
+    end)
+end)
 
