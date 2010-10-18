@@ -60,6 +60,29 @@ describe('Function', function()
 end)
 
 
+describe('Function arguments', function()
+    it('are passed by reference', function()
+        function f(table)
+            table.a = 2
+        end
+        local table = {a=1}
+        f(table)
+        assert(table.a == 2)
+    end)
+
+    it("are not mutable when they're primitive", function()
+        function f(number, string)
+            number = 2
+            string = 'b'
+        end
+        local number = 1
+        local string = 'a'
+        f(number, string)
+        assert(number == 1, string == 'a')
+    end)
+end)
+
+
 describe('pcall, the exception catcher', function()
     it('returns false when exceptions happen', function()
         f = function() foo() end
@@ -171,6 +194,9 @@ describe('A table used as an array', function()
         assert(array[1] == array[3])
     end)
 end)
+
+
+--Why does this work?: table = {a=1}; assert(#table == 0)
 
 
 --[[
