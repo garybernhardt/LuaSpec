@@ -1,0 +1,5 @@
+This is an executable specification for a subset of Lua, created as I learn
+the language. It focuses on things I find surprising, unusual, or tricky
+(noted by "interestingly") or bad (noted by "sadly"). It specifies some
+mundane behavior as well.
+
