@@ -349,25 +349,3 @@ end)
 
 summary()
 
-
---Why does this work?: table = {a=1}; assert(#table == 0)
---Why isn't this valid syntax?: assert({a=1} != {a=1})
-
-
---[[
-    Bug in manual section 2.2:
-    "Like indices, the value of a table field can be of any type (except nil)"
-    Values can be nil!
-    ]]
-
-
---[[
-    LANGUAGE NOTES
-
-    1) Using tables as objects seems to disallow the language to (1) define
-       table equality and (2) allow sentinel object creation. If empty tables
-       are equal, and objects are tables, then two new objects will equal
-       each other, so they can't be used as sentinels. If two new objects
-       don't equal each other, then table equality isn't defined properly.
-   ]]
-
