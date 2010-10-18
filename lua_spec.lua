@@ -1,6 +1,13 @@
 require 'spec_runner'
 
 
+describe('Operator', function()
+    it('sadly uses ~= for not-equal', function()
+        assert(1 ~= 2)
+    end)
+end)
+
+
 describe('Assignment', function()
     it('sadly throws away extra values', function()
         x, y = 1, 2, 3
