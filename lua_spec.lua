@@ -151,6 +151,28 @@ describe('A table', function()
 end)
 
 
+describe('A table used as an array', function()
+    it('has a size', function()
+        assert(#{1, 2, 3} == 3)
+    end)
+
+    it('sadly begins indexing at 1', function()
+        array = {'x'}
+        assert(array[1] == 'x')
+    end)
+
+    it('contains elements in order', function()
+        array = {10, 20, 30}
+        assert(array[1] == 10 and array[2] == 20 and array[3] == 30)
+    end)
+
+    it('can contain duplicate elements', function()
+        array = {10, 20, 10}
+        assert(array[1] == array[3])
+    end)
+end)
+
+
 --[[
     Bug in manual section 2.2: 
     "Like indices, the value of a table field can be of any type (except nil)"
