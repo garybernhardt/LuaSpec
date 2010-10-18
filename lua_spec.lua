@@ -428,7 +428,9 @@ end)
 
 
 describe('A variable', function()
-    xit('sadly can be accessed when not defined')
+    it('sadly can be accessed when not defined', function()
+        assert(this_is_definitely_not_defined == nil)
+    end)
 end)
 
 
