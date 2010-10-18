@@ -422,5 +422,10 @@ describe('A variable', function()
 end)
 
 
+describe('Memory management', function()
+    xit('sadly supports weak tables with a cryptic __mode field')
+end)
+
+
 summary()
 
