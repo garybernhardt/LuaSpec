@@ -212,6 +212,22 @@ describe('A table', function()
     it('sadly does not equal an identical table', function()
         assert({a=1} ~= {a=1})
     end)
+
+    it('sadly uses the # operator for length', function()
+        assert(#{1, 2, 3} == 3)
+    end)
+
+    it('sadly has two syntaxes for separating elements', function()
+        assert(#{1, 2; 3} == 3)
+    end)
+
+    it('interestingly has bracket syntax for non-identifier keys', function()
+        inner_table = {'the inner table'}
+        table = {[inner_table]=5}
+        next_fn = pairs(table)
+        key = next_fn(table)
+        assert(key[1] == 'the inner table')
+    end)
 end)
 
 
@@ -233,6 +249,12 @@ describe('A table used as an array', function()
     it('can contain duplicate elements', function()
         array = {10, 20, 10}
         assert(array[1] == array[3])
+    end)
+
+    xit('sadly considers any nil element as the end_ of the list', function()
+        -- I can't find an example to make this pass, but the manual claims
+        -- that it's true. The following fails:
+        -- assert(#{1, 2, nil, 3} == 2)
     end)
 end)
 
