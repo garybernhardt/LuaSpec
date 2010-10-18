@@ -94,6 +94,14 @@ describe('Function', function()
         assert(truncated[1] == 'first' and truncated[2] == 'outside')
         assert(not_truncated[1] == 'first' and not_truncated[2] == 'second')
     end)
+
+    it('sadly has special syntax for calling on tables and strings', function()
+        function f(x)
+            return 'a '..type(x)
+        end
+        assert(f{1} == 'a table')
+        assert(f'1' == 'a string')
+    end)
 end)
 
 
