@@ -347,6 +347,9 @@ describe('A variable', function()
 end)
 
 
+summary()
+
+
 --Why does this work?: table = {a=1}; assert(#table == 0)
 --Why isn't this valid syntax?: assert({a=1} != {a=1})
 
