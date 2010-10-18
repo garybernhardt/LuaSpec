@@ -378,6 +378,19 @@ describe('A generic for loop', function()
 end)
 
 
+describe('A closure', function()
+    it('closes over variables', function()
+        x = {0}
+        function f()
+            x[1] = x[1] + 1
+            return x[1]
+        end
+        assert(f() == 1)
+        assert(f() == 2)
+    end)
+end)
+
+
 describe('Return', function()
     xit('sadly must be the last statement in a block')
 end)
