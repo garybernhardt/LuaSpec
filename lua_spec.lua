@@ -391,6 +391,20 @@ describe('A closure', function()
 end)
 
 
+describe('A block', function()
+    it('creates a new environment on each execution', function()
+        a = {}
+        for i = 1, 2 do
+            local closed = {0}
+            a[i] = function() closed[1] = closed[1] + 1; return closed[1] end
+        end
+        assert(a[1]() == 1)
+        assert(a[1]() == 2)
+        assert(a[2]() == 1)
+    end)
+end)
+
+
 describe('Return', function()
     xit('sadly must be the last statement in a block')
 end)
