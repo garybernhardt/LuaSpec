@@ -184,17 +184,18 @@ end)
 
 describe('A class', function()
     before(function()
-        Dog = {
-            new = function(self)
-                dog = {}
-                setmetatable(dog, self)
-                self.__index = self
-                return dog
-            end,
-            bark = function(self)
-                return 'arf!'
-            end
-        }
+        Dog = {}
+
+        function Dog.new(class)
+            dog = {}
+            setmetatable(dog, class)
+            class.__index = class
+            return dog
+        end
+
+        function Dog:bark()
+            return 'arf!'
+        end
     end)
 
     it('has class methods', function()
