@@ -228,6 +228,11 @@ describe('A table', function()
         key = next_fn(table)
         assert(key[1] == 'the inner table')
     end)
+
+    it('can have trailing separators', function()
+        table = {'a', 'b',}
+        assert(table[2] == 'b')
+    end)
 end)
 
 
