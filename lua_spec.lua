@@ -198,7 +198,8 @@ describe('A table', function()
         assert(table.a == nil)
     end)
 
-    xit('sadly does not support equality', function()
+    it('sadly does not equal an identical table', function()
+        assert({a=1} ~= {a=1})
     end)
 end)
 
@@ -314,6 +315,7 @@ end)
 
 
 --Why does this work?: table = {a=1}; assert(#table == 0)
+--Why isn't this valid syntax?: assert({a=1} != {a=1})
 
 
 --[[
