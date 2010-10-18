@@ -209,6 +209,9 @@ describe('A table', function()
         table = {}
         assert(table.a == nil)
     end)
+
+    xit('sadly does not support equality', function()
+    end)
 end)
 
 
@@ -234,6 +237,94 @@ describe('A table used as an array', function()
 end)
 
 
+describe('If statement', function()
+    it('requires a then', function()
+        if true then
+            x = 5
+        end
+        assert(x == 5)
+    end)
+end)
+
+
+describe('While loop', function()
+    it('requires a do', function()
+        counter, sum = 0, 0
+        while counter < 3 do
+            counter, sum = counter + 1, sum + 10
+        end
+        assert(sum == 30)
+    end)
+end)
+
+
+describe('Repeat loop', function()
+    -- Vim bug: indentation fails if there's an "until" word in a string
+    it('has an _until_ clause', function()
+        counter, sum = 0, 0
+        repeat
+            counter, sum = counter + 1, sum + 10
+        until counter > 3
+        assert(sum == 40)
+    end)
+end)
+
+
+describe('Break', function()
+    it('exits loops', function()
+        x = 0
+        while true do
+            x = x + 1
+            break
+        end
+        assert(x == 1)
+    end)
+
+    xit('sadly must be the last statement in a block')
+end)
+
+
+describe('A numeric for loop', function()
+    it('sadly exists', function()
+        numbers = {}
+        for v = 1, 3, 2 do
+            numbers[#numbers + 1] = v
+        end
+        assert(numbers[1] == 1 and numbers[2] == 3 and numbers[3] == nil)
+    end)
+
+    it('has an optional step', function()
+        numbers = {}
+        for v = 1, 2 do
+            numbers[#numbers + 1] = v
+        end
+        assert(numbers[1] == 1 and numbers[2] == 2 and numbers[3] == nil)
+    end)
+end)
+
+
+describe('A generic for loop', function()
+    it('Loops over iterators', function()
+        array = {1, 2, 3}
+        sum = 0
+        for number in pairs(array) do
+            sum = sum + number
+        end
+        assert(sum == 6)
+    end)
+end)
+
+
+describe('Return', function()
+    xit('sadly must be the last statement in a block')
+end)
+
+
+describe('A variable', function()
+    xit('sadly can be accessed when not defined')
+end)
+
+
 --Why does this work?: table = {a=1}; assert(#table == 0)
 
 
@@ -242,4 +333,15 @@ end)
     "Like indices, the value of a table field can be of any type (except nil)"
     Values can be nil!
     ]]
+
+
+--[[
+    LANGUAGE NOTES
+
+    1) Using tables as objects seems to disallow the language to (1) define
+       table equality and (2) allow sentinel object creation. If empty tables
+       are equal, and objects are tables, then two new objects will equal
+       each other, so they can't be used as sentinels. If two new objects
+       don't equal each other, then table equality isn't defined properly.
+   ]]
 
