@@ -70,6 +70,19 @@ describe('Function', function()
         end
         assert(f() == nil)
     end)
+
+    it('sadly returns variable results depending on context', function()
+        function f()
+            return 'first', 'second'
+        end
+        function g(x, y)
+            return {x, y}
+        end
+        truncated = {f(), 'outside'}
+        not_truncated = {f()}
+        assert(truncated[1] == 'first' and truncated[2] == 'outside')
+        assert(not_truncated[1] == 'first' and not_truncated[2] == 'second')
+    end)
 end)
 
 
