@@ -350,7 +350,12 @@ describe('Break', function()
         assert(x == 1)
     end)
 
-    xit('sadly must be the last statement in a block')
+    it('sadly must be the last statement in a block', function()
+        break_at_end_ok, error = loadstring('while true do break; end')
+        break_in_middle_ok, error = loadstring('while true do break; x = 1; end')
+        assert(break_at_end_ok)
+        assert(not break_in_middle_ok)
+    end)
 end)
 
 
