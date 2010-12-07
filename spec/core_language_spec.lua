@@ -8,7 +8,7 @@ end)
 describe('Assignment', function()
     it('sadly throws away extra values', function()
         x, y = 1, 2, 3
-        assert(x == 1 and y == 2)
+        assert(x == 1 and y == 2 and z == nil)
     end)
 
     it('sadly fills in missing values with nils', function()
